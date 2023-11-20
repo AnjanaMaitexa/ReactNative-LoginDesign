@@ -17,7 +17,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 export type RootStackParamList = {
   Login: undefined;
-  SignUp: undefined;
+  SignUp: { email: string } ;
   Home:undefined
 };
 const Stack = createNativeStackNavigator<RootStackParamList>();

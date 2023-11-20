@@ -6,6 +6,7 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from './App';
 import Login from './Login';
 import Icon from 'react-native-vector-icons/FontAwesome'
+import { useRoute } from '@react-navigation/native';
 type SignUpProps = NativeStackScreenProps<RootStackParamList, 'SignUp'>;
 export default function SignUp({navigation}: SignUpProps) {
   const handleTextInputChange = () => {
@@ -15,7 +16,10 @@ export default function SignUp({navigation}: SignUpProps) {
   };
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-
+  const route = useRoute();
+  const { email } = route.params as {
+    email: string;
+  };
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -24,6 +28,7 @@ export default function SignUp({navigation}: SignUpProps) {
     <ScrollView>
     <View style={styles.container}>
       <Image source={Loginpng} style={styles.imagestyle}></Image>
+      <Text>{email}</Text>
       <TextInput
         style={[styles.inputstyle, {width: screenWidth - 20}]}
         placeholder="FullName"
@@ -75,7 +80,7 @@ export default function SignUp({navigation}: SignUpProps) {
       </View>
       <View style={[styles.forgotPasswordContainer, {width: screenWidth - 20}]}>
         <TouchableOpacity
-          onPress={() => navigation.navigate('Login')}
+          onPress={() => navigation.replace('Login')}
           style={styles.signupContainer}>
           <Text style={styles.signupText}>Already have an account?SignIn</Text>
         </TouchableOpacity>

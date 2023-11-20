@@ -19,7 +19,8 @@ export default function Login({navigation}: LoginProps) {
   const screenWidth = Dimensions.get('window').width;
   const [text, setText] = useState(''); // Initialize the state with an empty string
 
-  const handleTextInputChange = () => {
+  const handleTextInputChange = (input:string) => {
+    setText(input);
     // Update the 'text' state with the new text
   };
   const handleButtonPress = () => {
@@ -45,7 +46,7 @@ export default function Login({navigation}: LoginProps) {
         selectionColor="#FFFFFF"></TextInput>
       <View style={[styles.forgotPasswordContainer, {width: screenWidth - 20}]}>
         <TouchableOpacity
-          onPress={handleTextInputChange}
+          onPress={()=>{}}
           style={styles.touchableTextContainer}>
           <Text style={styles.touchableText}>Forgot Password?</Text>
         </TouchableOpacity>
@@ -59,7 +60,7 @@ export default function Login({navigation}: LoginProps) {
       </View>
       <View style={[styles.forgotPasswordContainer, {width: screenWidth - 20}]}>
         <TouchableOpacity
-          onPress={() => navigation.push('SignUp')}
+          onPress={() => navigation.push('SignUp',{ email: text})}
           style={styles.signupContainer}>
           <Text style={styles.signupText}>Don't have an account?SignUp</Text>
         </TouchableOpacity>
